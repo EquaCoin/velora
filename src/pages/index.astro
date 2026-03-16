@@ -10,29 +10,41 @@ const title = "Velora • Pensa come un umano, compila come un dio";
   <title>{title}</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { background: radial-gradient(circle at center, #0A0A1F 0%, #000000 100%); }
-    .velora-glow { text-shadow: 0 0 40px #00F5FF, 0 0 80px #A020F0; }
-    .logo-v { font-size: 18rem; line-height: 1; background: linear-gradient(45deg, #A020F0, #00F5FF, #FFD700); -webkit-background-clip: text; color: transparent; }
-    .neon { box-shadow: 0 0 30px #00F5FF; }
+    body { 
+      background: radial-gradient(circle at center, #0A0A1F 0%, #000000 100%); 
+    }
+    .velora-glow { 
+      text-shadow: 0 0 50px #00F5FF, 0 0 100px #A020F0, 0 0 150px #FFD700; 
+    }
+    .code-block {
+      background: #0F0F1A;
+      border: 2px solid #00F5FF;
+      box-shadow: 0 0 40px #00F5FF;
+    }
+    pre { 
+      color: #67E8F9; /* cyan-200 super luminoso */
+      font-size: 1.15rem;
+      line-height: 1.6;
+    }
   </style>
 </head>
 <body class="text-white font-sans">
-  <div class="min-h-screen flex flex-col items-center justify-center px-6">
+  <div class="min-h-screen flex flex-col items-center justify-center px-6 py-12">
     <!-- Logo ufficiale -->
     <div class="mb-8 text-center">
-      <div class="logo-v font-black tracking-tighter">V</div>
-      <h1 class="text-6xl font-bold velora-glow">VELORA</h1>
-      <p class="text-xl mt-2 text-cyan-400">v1.0 • AI-Native Programming Language</p>
+      <div class="text-[15rem] font-black tracking-[-0.05em] bg-gradient-to-br from-purple-400 via-cyan-300 to-yellow-300 bg-clip-text text-transparent velora-glow">V</div>
+      <h1 class="text-7xl font-bold velora-glow tracking-tight">VELORA</h1>
+      <p class="text-2xl mt-3 text-cyan-300">v1.0 • AI-Native Programming Language</p>
     </div>
 
-    <h2 class="text-5xl font-bold text-center max-w-3xl velora-glow mb-12">
+    <h2 class="text-6xl font-bold text-center max-w-4xl velora-glow mb-12 leading-tight">
       Pensa come un umano,<br>
-      <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">compila come un dio</span>
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-300">compila come un dio</span>
     </h2>
 
-    <!-- Esempio codice -->
-    <div class="bg-black/70 backdrop-blur-xl border border-cyan-500/30 rounded-3xl p-8 max-w-2xl w-full neon">
-      <pre class="text-cyan-300 text-lg overflow-x-auto"><code>main:
+    <!-- Blocco codice SUPER leggibile -->
+    <div class="code-block rounded-3xl p-10 max-w-3xl w-full overflow-hidden">
+      <pre class="overflow-x-auto"><code>main:
     print("Ciao mondo! Velora è viva 🚀")
 
 fn fibonacci(n: Int) -> Int:
@@ -42,21 +54,21 @@ fn fibonacci(n: Int) -> Int:
         _: fibonacci(n-1) + fibonacci(n-2)
 
 # AI: crea una REST API completa
-api = ai "REST API per utenti con JWT"</code></pre>
+api = ai "REST API per utenti con JWT e validazione"</code></pre>
     </div>
 
-    <div class="mt-12 flex gap-6">
+    <div class="mt-16 flex gap-8">
       <a href="https://github.com/EquaCoin/velora/releases" 
-         class="px-10 py-5 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-2xl font-bold text-xl hover:scale-105 transition">
+         class="px-12 py-6 bg-gradient-to-r from-purple-600 to-cyan-500 rounded-3xl font-bold text-2xl hover:scale-110 transition-all">
         ↓ Download Velora v1.0
       </a>
       <a href="#" 
-         class="px-10 py-5 border-2 border-cyan-400 rounded-2xl font-bold text-xl hover:bg-cyan-400/10 transition">
+         class="px-12 py-6 border-4 border-cyan-400 text-cyan-300 rounded-3xl font-bold text-2xl hover:bg-cyan-400/10 transition-all">
         Prova il Playground
       </a>
     </div>
 
-    <p class="mt-20 text-sm text-gray-400">Built with love in Rome 🇮🇹 • velora-lang.uk • 16 Marzo 2026</p>
+    <p class="mt-24 text-base text-cyan-400">Built with ❤️ in Rome 🇮🇹 • velora-lang.uk • 16 Marzo 2026</p>
   </div>
 </body>
 </html>
