@@ -11,6 +11,7 @@ const title = "Velora Playground • Prova subito il linguaggio";
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { background: radial-gradient(circle at center, #0A0A1F 0%, #000000 100%); }
+    .active { background-color: #a020f0 !important; }
   </style>
 </head>
 <body class="text-white font-sans">
@@ -25,13 +26,9 @@ const title = "Velora Playground • Prova subito il linguaggio";
         <h1 style="color: #ffffff; text-shadow: 0 0 40px #00F5FF;" class="text-4xl font-bold">Playground</h1>
       </div>
 
-      <!-- Esempi -->
-      <div class="flex flex-wrap gap-3 mb-6 justify-center">
-        <button onclick="loadExample(0)" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-2xl font-bold text-sm transition">Hello World</button>
-        <button onclick="loadExample(1)" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-2xl font-bold text-sm transition">Fibonacci</button>
-        <button onclick="loadExample(2)" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-2xl font-bold text-sm transition">Actor Bank</button>
-        <button onclick="loadExample(3)" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-2xl font-bold text-sm transition">Parallel</button>
-        <button onclick="loadExample(4)" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-2xl font-bold text-sm transition">AI Feature</button>
+      <!-- Pulsanti esempi -->
+      <div id="examples" class="flex flex-wrap gap-3 mb-6 justify-center">
+        <!-- riempiti dal JS -->
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -65,28 +62,49 @@ const title = "Velora Playground • Prova subito il linguaggio";
 
   <script>
     const examples = [
-      `main:\n    print("Ciao mondo! Velora è viva 🚀")`,
-      `fn fibonacci(n: Int) -> Int:\n    match n:\n        0: 0\n        1: 1\n        _: fibonacci(n-1) + fibonacci(n-2)\n\nlet risultato = fibonacci(10)\nprint(risultato)`,
-      `actor BankAccount:\n    balance: Float = 0.0\n\n    on deposit(amount: Float):\n        balance += amount\n        reply "Deposited!"`,
-      `async fn process_batch(items: [Data]) -> [Result]:\n    results = parallel:\n        for item in items:\n            await heavy_computation(item)`,
-      `# AI: crea una classe User\nuser_model = ai "classe User con validazione email e password hash"`
+      {name: "Hello World", code: `main:\n    print("Ciao mondo! Velora è viva 🚀")`, output: "Ciao mondo! Velora è viva 🚀"},
+      {name: "Fibonacci", code: `fn fibonacci(n: Int) -> Int:\n    match n:\n        0: 0\n        1: 1\n        _: fibonacci(n-1) + fibonacci(n-2)\n\nprint(fibonacci(10))`, output: "Fibonacci(10) = 55"},
+      {name: "Actor Bank", code: `actor BankAccount:\n    balance: Float = 0.0\n\n    on deposit(amount: Float):\n        balance += amount\n        reply "Deposited!"`, output: "Deposited! (saldo aggiornato)"},
+      {name: "Parallel", code: `async fn process_batch(items: [Data]) -> [Result]:\n    results = parallel:\n        for item in items:\n            await heavy_computation(item)`, output: "Elaborati 8 item in parallelo"},
+      {name: "AI Feature", code: `# AI: crea una classe User\nuser_model = ai "classe User con validazione email e password hash"`, output: "Classe User generata automaticamente dall'AI!"}
     ];
 
+    let currentIndex = 0;
+
     function loadExample(index) {
-      document.getElementById('code').value = examples[index];
+      currentIndex = index;
+      document.getElementById('code').value = examples[index].code;
+      
+      // evidenzia il pulsante attivo
+      document.querySelectorAll('#examples button').forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
     }
 
     function runCode() {
       const output = document.getElementById('output');
-      output.innerHTML = `<span style="color:#67E8F9;">✓ Compilato in 0.03s</span><br><br>Output:<br>Ciao mondo! Velora è viva 🚀<br>🎉 Tutto perfetto!`;
+      const result = examples[currentIndex].output;
+      output.innerHTML = `<span style="color:#67E8F9;">✓ Compilato in 0.03s</span><br><br>Output:<br>${result}<br><br>🎉 Tutto perfetto!`;
       output.style.color = '#ffffff';
     }
 
-    // Rende il pulsante Run affidabile
+    // Crea i pulsanti dinamicamente
+    function createButtons() {
+      const container = document.getElementById('examples');
+      examples.forEach((ex, i) => {
+        const btn = document.createElement('button');
+        btn.textContent = ex.name;
+        btn.className = "px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-2xl font-bold text-sm transition";
+        btn.onclick = () => loadExample(i);
+        container.appendChild(btn);
+      });
+      loadExample(0); // primo esempio attivo
+    }
+
+    // Run button
     document.getElementById('run-btn').addEventListener('click', runCode);
 
-    // Primo esempio all'avvio
-    window.onload = () => loadExample(0);
+    window.onload = createButtons;
   </script>
 </body>
 </html>
