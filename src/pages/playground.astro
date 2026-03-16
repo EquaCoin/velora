@@ -16,7 +16,7 @@ const title = "Velora Playground • Prova subito il linguaggio";
 <body class="text-white font-sans">
   <div class="min-h-screen p-8">
     <div class="max-w-6xl mx-auto">
-      <!-- Header bianco -->
+      <!-- Header bianco luminoso -->
       <div class="flex justify-between items-center mb-8">
         <a href="/" class="flex items-center gap-3 text-3xl font-bold" style="color: #ffffff; text-shadow: 0 0 40px #00F5FF;">
           <img src="/logo.png" class="w-12" alt="Velora">
@@ -25,23 +25,25 @@ const title = "Velora Playground • Prova subito il linguaggio";
         <h1 style="color: #ffffff; text-shadow: 0 0 40px #00F5FF;" class="text-4xl font-bold">Playground</h1>
       </div>
 
+      <!-- Pulsanti esempi -->
+      <div class="flex flex-wrap gap-3 mb-6 justify-center">
+        <button onclick="loadExample(0)" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-2xl font-bold text-sm transition">Hello World</button>
+        <button onclick="loadExample(1)" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-2xl font-bold text-sm transition">Fibonacci</button>
+        <button onclick="loadExample(2)" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-2xl font-bold text-sm transition">Actor Bank</button>
+        <button onclick="loadExample(3)" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-2xl font-bold text-sm transition">Parallel Batch</button>
+        <button onclick="loadExample(4)" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-2xl font-bold text-sm transition">AI Feature</button>
+      </div>
+
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <!-- Editor -->
         <div>
           <h2 style="color: #ffffff;" class="text-xl mb-3">Scrivi codice Velora</h2>
-          <textarea id="code" class="editor w-full h-96 p-6 font-mono text-lg resize-none rounded-3xl" 
+          <textarea id="code" class="w-full h-96 p-6 font-mono text-lg resize-none rounded-3xl" 
                     style="background: #05050F; border: 3px solid #00F5FF; box-shadow: 0 0 40px #00F5FF; color: #67E8F9 !important;" 
-                    spellcheck="false">main:
-    print("Ciao mondo! Velora è viva 🚀")
-
-fn fibonacci(n: Int) -> Int:
-    match n:
-        0: 0
-        1: 1
-        _: fibonacci(n-1) + fibonacci(n-2)</textarea>
+                    spellcheck="false"></textarea>
         </div>
 
-        <!-- Output bianco -->
+        <!-- Output -->
         <div>
           <div class="flex justify-between mb-3">
             <h2 style="color: #ffffff;" class="text-xl">Output</h2>
@@ -50,9 +52,9 @@ fn fibonacci(n: Int) -> Int:
               ▶️ Run (Simulato)
             </button>
           </div>
-          <div id="output" class="editor w-full h-96 p-6 font-mono text-lg rounded-3xl overflow-auto" 
+          <div id="output" class="w-full h-96 p-6 font-mono text-lg rounded-3xl overflow-auto" 
                style="background: #05050F; border: 3px solid #00F5FF; box-shadow: 0 0 40px #00F5FF; color: #ffffff !important;">
-            Clicca Run per vedere il risultato...
+            Seleziona un esempio e clicca Run!
           </div>
         </div>
       </div>
@@ -62,11 +64,26 @@ fn fibonacci(n: Int) -> Int:
   </div>
 
   <script>
+    const examples = [
+      `main:\n    print("Ciao mondo! Velora è viva 🚀")`,
+      `fn fibonacci(n: Int) -> Int:\n    match n:\n        0: 0\n        1: 1\n        _: fibonacci(n-1) + fibonacci(n-2)\n\nlet risultato = fibonacci(10)\nprint(risultato)`,
+      `actor BankAccount:\n    balance: Float = 0.0\n\n    on deposit(amount: Float):\n        balance += amount\n        reply "Deposited!"\n\nlet account = BankAccount()\naccount << deposit(100.0)`,
+      `async fn process_batch(items: [Data]) -> [Result]:\n    results = parallel:\n        for item in items:\n            await heavy_computation(item)\n    return results |> filter(is_valid) |> sort_by(score)`,
+      `# AI: crea una classe User con validazione email e hashing password\nuser_model = ai "classe User con validazione email e password hash"`
+    ];
+
+    function loadExample(index) {
+      document.getElementById('code').value = examples[index];
+    }
+
     function runCode() {
       const output = document.getElementById('output');
-      output.innerHTML = `<span style="color:#67E8F9;">✓ Compilato in 0.03s</span><br><br>Output:<br>Ciao mondo! Velora è viva 🚀<br>Fibonacci(10) = 55<br><br>🎉 Tutto perfetto!`;
+      output.innerHTML = `<span style="color:#67E8F9;">✓ Compilato in 0.03s</span><br><br>Output simulato pronto!<br>🎉 Tutto perfetto!`;
       output.style.color = '#ffffff';
     }
+
+    // Carica il primo esempio all'avvio
+    window.onload = () => loadExample(0);
   </script>
 </body>
 </html>
