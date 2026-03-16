@@ -10,49 +10,26 @@ const title = "Velora • Pensa come un umano, compila come un dio";
   <title>{title}</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { 
-      background: radial-gradient(circle at center, #0A0A1F 0%, #000000 100%); 
-    }
-    .velora-glow { 
-      text-shadow: 0 0 40px #00F5FF, 0 0 80px #A020F0, 0 0 120px #FFD700, 0 0 180px #ffffff !important; 
-    }
-    .big-v {
-      font-size: 14rem;
-      line-height: 0.8;
-      color: #ffffff !important;
-      text-shadow: 0 0 100px #00F5FF, 0 0 200px #A020F0, 0 0 300px #ffffff !important;
-    }
-    .headline { color: #ffffff !important; }
-    .subtitle { color: #67E8F9 !important; }
-    .code-block {
-      background: #05050F !important;
-      border: 4px solid #00F5FF !important;
-      box-shadow: 0 0 60px #00F5FF !important;
-    }
-    pre { 
-      color: #67E8F9 !important; 
-      font-size: 1.25rem;
-      line-height: 1.8;
-    }
+    body { background: radial-gradient(circle at center, #0A0A1F 0%, #000000 100%); }
   </style>
 </head>
 <body class="text-white font-sans overflow-x-hidden">
   <div class="min-h-screen flex flex-col items-center justify-center px-6 py-12">
-    <!-- Logo V ENORME BIANCO -->
+    <!-- V ENORME BIANCO PURO -->
     <div class="text-center mb-6">
-      <div class="big-v font-black tracking-[-0.08em] velora-glow">V</div>
-      <h1 class="text-7xl font-bold velora-glow tracking-tighter -mt-8">VELORA</h1>
-      <p class="subtitle text-2xl mt-2">v1.0 • AI-Native Programming Language</p>
+      <div style="font-size: 14rem; line-height: 0.8; color: #ffffff; text-shadow: 0 0 80px #00F5FF, 0 0 160px #A020F0, 0 0 300px #ffffff;" class="font-black tracking-[-0.08em]">V</div>
+      <h1 style="color: #ffffff; text-shadow: 0 0 60px #00F5FF, 0 0 120px #A020F0, 0 0 200px #ffffff;" class="text-7xl font-bold tracking-tighter -mt-8">VELORA</h1>
+      <p style="color: #67E8F9;" class="text-2xl mt-2">v1.0 • AI-Native Programming Language</p>
     </div>
 
-    <!-- Headline BIANCA PURA -->
-    <h2 class="headline text-6xl font-bold text-center max-w-4xl velora-glow mb-16 leading-none">
+    <!-- HEADLINE BIANCA PURA -->
+    <h2 style="color: #ffffff; text-shadow: 0 0 60px #00F5FF, 0 0 120px #A020F0, 0 0 200px #ffffff;" class="text-6xl font-bold text-center max-w-4xl mb-16 leading-none">
       Pensa come un umano,<br>
       compila come un dio
     </h2>
 
-    <!-- Blocco codice (lasciato com'è – già perfetto) -->
-    <div class="code-block rounded-3xl p-10 max-w-3xl w-full overflow-hidden">
+    <!-- Blocco codice (già perfetto) -->
+    <div class="bg-[#05050F] border-4 border-[#00F5FF] rounded-3xl p-10 max-w-3xl w-full" style="box-shadow: 0 0 60px #00F5FF;">
       <pre class="overflow-x-auto"><code>main:
     print("Ciao mondo! Velora è viva 🚀")
 
@@ -67,17 +44,12 @@ api = ai "REST API per utenti con JWT e validazione"</code></pre>
     </div>
 
     <div class="mt-16 flex flex-col sm:flex-row gap-8 w-full max-w-xl">
-      <a href="https://github.com/EquaCoin/velora/releases" 
-         class="flex-1 px-12 py-7 bg-gradient-to-r from-purple-600 to-cyan-500 text-center rounded-3xl font-bold text-2xl hover:scale-110 hover:shadow-2xl transition-all">
-        ↓ Download Velora v1.0
-      </a>
-      <a href="#" 
-         class="flex-1 px-12 py-7 border-4 border-cyan-400 text-[#67E8F9] text-center rounded-3xl font-bold text-2xl hover:bg-cyan-400/10 transition-all">
-        Prova il Playground
-      </a>
+      <a href="https://github.com/EquaCoin/velora/releases" class="flex-1 px-12 py-7 bg-gradient-to-r from-purple-600 to-cyan-500 text-center rounded-3xl font-bold text-2xl hover:scale-110">↓ Download Velora v1.0</a>
+      <a href="#" class="flex-1 px-12 py-7 border-4 border-cyan-400 text-[#67E8F9] text-center rounded-3xl font-bold text-2xl hover:bg-cyan-400/10">Prova il Playground</a>
     </div>
 
-    <p class="mt-24 text-lg text-[#67E8F9] flex items-center gap-3">
+    <!-- FOOTER ORA BIANCO LUMINOSO -->
+    <p style="color: #ffffff; text-shadow: 0 0 30px #67E8F9;" class="mt-24 text-lg flex items-center gap-3">
       Built with ❤️ in Rome 
       <span class="text-2xl">🇮🇹</span> 
       • velora-lang.uk • 16 Marzo 2026
