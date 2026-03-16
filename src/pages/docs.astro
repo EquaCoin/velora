@@ -11,7 +11,6 @@ const title = "Velora Docs • v2.0";
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { background: radial-gradient(circle at center, #0A0A1F 0%, #000000 100%); }
-    .glow { text-shadow: 0 0 40px #00F5FF; }
   </style>
 </head>
 <body class="text-white font-sans">
@@ -20,81 +19,74 @@ const title = "Velora Docs • v2.0";
     <div class="flex items-center gap-4 mb-12">
       <img src="/logo.png" class="w-16" alt="Velora">
       <div>
-        <h1 class="text-5xl font-bold glow">Velora Docs</h1>
-        <p class="text-cyan-300 text-xl">v2.0 • AI-Native Programming Language</p>
+        <h1 style="color: #ffffff !important; text-shadow: 0 0 80px #00F5FF, 0 0 160px #A020F0, 0 0 300px #ffffff !important;" class="text-5xl font-bold">Velora Docs</h1>
+        <p style="color: #67E8F9 !important;" class="text-xl">v2.0 • AI-Native Programming Language</p>
       </div>
     </div>
 
-    <h2 class="text-3xl font-bold mb-8">Installazione</h2>
+    <h2 style="color: #ffffff !important; text-shadow: 0 0 60px #00F5FF, 0 0 120px #A020F0, 0 0 200px #ffffff !important;" class="text-3xl font-bold mb-8">Installazione</h2>
     <div class="bg-[#05050F] p-6 rounded-3xl mb-12">
-      <pre><code>cd ~/Velora
+      <pre><code style="color: #67E8F9 !important;">cd ~/Velora
 python3 velora.py run test.vel</code></pre>
     </div>
 
-    <h2 class="text-3xl font-bold mb-8">Sintassi Base</h2>
-    <ul class="space-y-6 text-lg">
+    <h2 style="color: #ffffff !important; text-shadow: 0 0 60px #00F5FF, 0 0 120px #A020F0, 0 0 200px #ffffff !important;" class="text-3xl font-bold mb-8">Sintassi Base</h2>
+    <ul class="space-y-6 text-lg" style="color: #ffffff !important;">
       <li><strong>main:</strong> punto di ingresso</li>
       <li><strong>print()</strong> – output</li>
-      <li><strong>let x = ...</strong> – variabile immutabile</li>
+      <li><strong>let x = ...</strong> – variabile</li>
       <li><strong>fn nome(...)</strong> – funzioni</li>
       <li><strong>match</strong> – pattern matching</li>
+      <li><strong>actor</strong> – concurrency sicura</li>
+      <li><strong>parallel:</strong> – parallelismo reale</li>
+      <li><strong># AI:</strong> – generazione automatica</li>
     </ul>
 
-    <h2 class="text-3xl font-bold mt-16 mb-8">Esempi Completi</h2>
+    <h2 style="color: #ffffff !important; text-shadow: 0 0 60px #00F5FF, 0 0 120px #A020F0, 0 0 200px #ffffff !important;" class="text-3xl font-bold mt-16 mb-8">Esempi Completi</h2>
 
     <div class="space-y-12">
-      <!-- Hello World -->
       <div>
-        <h3 class="text-2xl font-bold text-cyan-300 mb-3">1. Hello World</h3>
-        <pre class="bg-[#05050F] p-6 rounded-3xl text-cyan-300"><code>main:
+        <h3 style="color: #ffffff !important;" class="text-2xl font-bold text-cyan-300 mb-3">1. Hello World</h3>
+        <pre class="bg-[#05050F] p-6 rounded-3xl"><code style="color: #67E8F9 !important;">main:
     print("Ciao mondo! Velora è viva 🚀")</code></pre>
       </div>
 
-      <!-- Fibonacci -->
       <div>
-        <h3 class="text-2xl font-bold text-cyan-300 mb-3">2. Fibonacci</h3>
-        <pre class="bg-[#05050F] p-6 rounded-3xl text-cyan-300"><code>fn fibonacci(n: Int) -> Int:
+        <h3 style="color: #ffffff !important;" class="text-2xl font-bold text-cyan-300 mb-3">2. Fibonacci</h3>
+        <pre class="bg-[#05050F] p-6 rounded-3xl"><code style="color: #67E8F9 !important;">fn fibonacci(n: Int) -> Int:
     match n:
         0: 0
         1: 1
-        _: fibonacci(n-1) + fibonacci(n-2)
-
-print(fibonacci(10))</code></pre>
+        _: fibonacci(n-1) + fibonacci(n-2)</code></pre>
       </div>
 
-      <!-- Actor -->
       <div>
-        <h3 class="text-2xl font-bold text-cyan-300 mb-3">3. Actor (concurrency sicura)</h3>
-        <pre class="bg-[#05050F] p-6 rounded-3xl text-cyan-300"><code>actor BankAccount:
+        <h3 style="color: #ffffff !important;" class="text-2xl font-bold text-cyan-300 mb-3">3. Actor</h3>
+        <pre class="bg-[#05050F] p-6 rounded-3xl"><code style="color: #67E8F9 !important;">actor BankAccount:
     balance: Float = 0.0
-
-    on deposit(amount: Float):
-        balance += amount
 
 BankAccount << deposit(100)</code></pre>
       </div>
 
-      <!-- Parallel -->
       <div>
-        <h3 class="text-2xl font-bold text-cyan-300 mb-3">4. Parallelismo</h3>
-        <pre class="bg-[#05050F] p-6 rounded-3xl text-cyan-300"><code>async fn process():
-    parallel:
-        print("Task 1")
-        print("Task 2")</code></pre>
+        <h3 style="color: #ffffff !important;" class="text-2xl font-bold text-cyan-300 mb-3">4. Parallelismo</h3>
+        <pre class="bg-[#05050F] p-6 rounded-3xl"><code style="color: #67E8F9 !important;">parallel:
+    print("Task 1")
+    print("Task 2")</code></pre>
       </div>
 
-      <!-- AI -->
       <div>
-        <h3 class="text-2xl font-bold text-cyan-300 mb-3">5. AI Feature</h3>
-        <pre class="bg-[#05050F] p-6 rounded-3xl text-cyan-300"><code># AI: crea una classe User
+        <h3 style="color: #ffffff !important;" class="text-2xl font-bold text-cyan-300 mb-3">5. AI Feature</h3>
+        <pre class="bg-[#05050F] p-6 rounded-3xl"><code style="color: #67E8F9 !important;"># AI: crea una classe User
 user_model = ai "classe User con validazione email e password hash"</code></pre>
       </div>
     </div>
 
-    <h2 class="text-3xl font-bold mt-16 mb-8">CLI</h2>
-    <pre class="bg-[#05050F] p-6 rounded-3xl"><code>python3 velora.py run file.vel</code></pre>
-
-    <p class="mt-16 text-center text-cyan-400">Built with ❤️ in Rome • velora-lang.uk • 16 Marzo 2026</p>
+    <p style="color: #ffffff !important; text-shadow: 0 0 40px #67E8F9;" class="mt-16 text-center text-lg">
+      Built with ❤️ in Rome 
+      <span class="text-2xl">🇮🇹</span> 
+      • velora-lang.uk • 16 Marzo 2026
+    </p>
   </div>
 </body>
 </html>
