@@ -16,7 +16,7 @@ const title = "Velora Playground • Prova subito il linguaggio";
 <body class="text-white font-sans">
   <div class="min-h-screen p-8">
     <div class="max-w-6xl mx-auto">
-      <!-- Header bianco luminoso -->
+      <!-- Header -->
       <div class="flex justify-between items-center mb-8">
         <a href="/" class="flex items-center gap-3 text-3xl font-bold" style="color: #ffffff; text-shadow: 0 0 40px #00F5FF;">
           <img src="/logo.png" class="w-12" alt="Velora">
@@ -25,12 +25,12 @@ const title = "Velora Playground • Prova subito il linguaggio";
         <h1 style="color: #ffffff; text-shadow: 0 0 40px #00F5FF;" class="text-4xl font-bold">Playground</h1>
       </div>
 
-      <!-- Pulsanti esempi -->
+      <!-- Esempi -->
       <div class="flex flex-wrap gap-3 mb-6 justify-center">
         <button onclick="loadExample(0)" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-2xl font-bold text-sm transition">Hello World</button>
         <button onclick="loadExample(1)" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-2xl font-bold text-sm transition">Fibonacci</button>
         <button onclick="loadExample(2)" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-2xl font-bold text-sm transition">Actor Bank</button>
-        <button onclick="loadExample(3)" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-2xl font-bold text-sm transition">Parallel Batch</button>
+        <button onclick="loadExample(3)" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-2xl font-bold text-sm transition">Parallel</button>
         <button onclick="loadExample(4)" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-2xl font-bold text-sm transition">AI Feature</button>
       </div>
 
@@ -47,9 +47,9 @@ const title = "Velora Playground • Prova subito il linguaggio";
         <div>
           <div class="flex justify-between mb-3">
             <h2 style="color: #ffffff;" class="text-xl">Output</h2>
-            <button onclick="runCode()" 
+            <button id="run-btn" 
                     class="px-8 py-3 bg-gradient-to-r from-purple-600 to-cyan-500 rounded-2xl font-bold text-xl hover:scale-105 transition">
-              ▶️ Run (Simulato)
+              ▶️ Run
             </button>
           </div>
           <div id="output" class="w-full h-96 p-6 font-mono text-lg rounded-3xl overflow-auto" 
@@ -59,7 +59,7 @@ const title = "Velora Playground • Prova subito il linguaggio";
         </div>
       </div>
 
-      <p style="color: #ffffff; text-shadow: 0 0 20px #67E8F9;" class="mt-12 text-center">Questo è un mock interattivo. Il vero compilatore arriverà in v1.1!</p>
+      <p style="color: #ffffff; text-shadow: 0 0 20px #67E8F9;" class="mt-12 text-center">Mock interattivo • Il vero compilatore arriverà in v1.1</p>
     </div>
   </div>
 
@@ -67,9 +67,9 @@ const title = "Velora Playground • Prova subito il linguaggio";
     const examples = [
       `main:\n    print("Ciao mondo! Velora è viva 🚀")`,
       `fn fibonacci(n: Int) -> Int:\n    match n:\n        0: 0\n        1: 1\n        _: fibonacci(n-1) + fibonacci(n-2)\n\nlet risultato = fibonacci(10)\nprint(risultato)`,
-      `actor BankAccount:\n    balance: Float = 0.0\n\n    on deposit(amount: Float):\n        balance += amount\n        reply "Deposited!"\n\nlet account = BankAccount()\naccount << deposit(100.0)`,
-      `async fn process_batch(items: [Data]) -> [Result]:\n    results = parallel:\n        for item in items:\n            await heavy_computation(item)\n    return results |> filter(is_valid) |> sort_by(score)`,
-      `# AI: crea una classe User con validazione email e hashing password\nuser_model = ai "classe User con validazione email e password hash"`
+      `actor BankAccount:\n    balance: Float = 0.0\n\n    on deposit(amount: Float):\n        balance += amount\n        reply "Deposited!"`,
+      `async fn process_batch(items: [Data]) -> [Result]:\n    results = parallel:\n        for item in items:\n            await heavy_computation(item)`,
+      `# AI: crea una classe User\nuser_model = ai "classe User con validazione email e password hash"`
     ];
 
     function loadExample(index) {
@@ -78,11 +78,14 @@ const title = "Velora Playground • Prova subito il linguaggio";
 
     function runCode() {
       const output = document.getElementById('output');
-      output.innerHTML = `<span style="color:#67E8F9;">✓ Compilato in 0.03s</span><br><br>Output simulato pronto!<br>🎉 Tutto perfetto!`;
+      output.innerHTML = `<span style="color:#67E8F9;">✓ Compilato in 0.03s</span><br><br>Output:<br>Ciao mondo! Velora è viva 🚀<br>🎉 Tutto perfetto!`;
       output.style.color = '#ffffff';
     }
 
-    // Carica il primo esempio all'avvio
+    // Rende il pulsante Run affidabile
+    document.getElementById('run-btn').addEventListener('click', runCode);
+
+    // Primo esempio all'avvio
     window.onload = () => loadExample(0);
   </script>
 </body>
