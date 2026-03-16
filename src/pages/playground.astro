@@ -11,10 +11,16 @@ const title = "Velora Playground • Prova subito il linguaggio";
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { background: radial-gradient(circle at center, #0A0A1F 0%, #000000 100%); }
-    .active { background-color: #a020f0 !important; }
   </style>
 </head>
 <body class="text-white font-sans">
+  <!-- NAVIGAZIONE SUPERIORE (ora presente anche qui) -->
+  <nav class="flex justify-center gap-8 py-6 text-lg font-medium border-b border-cyan-500/30">
+    <a href="/" class="hover:text-cyan-300 transition">Home</a>
+    <a href="/docs" class="hover:text-cyan-300 transition">Docs</a>
+    <a href="/playground" class="hover:text-cyan-300 transition">Playground</a>
+  </nav>
+
   <div class="min-h-screen p-8">
     <div class="max-w-6xl mx-auto">
       <!-- Header -->
@@ -64,9 +70,9 @@ const title = "Velora Playground • Prova subito il linguaggio";
     const examples = [
       {name: "Hello World", code: `main:\n    print("Ciao mondo! Velora è viva 🚀")`, output: "Ciao mondo! Velora è viva 🚀"},
       {name: "Fibonacci", code: `fn fibonacci(n: Int) -> Int:\n    match n:\n        0: 0\n        1: 1\n        _: fibonacci(n-1) + fibonacci(n-2)\n\nprint(fibonacci(10))`, output: "Fibonacci(10) = 55"},
-      {name: "Actor Bank", code: `actor BankAccount:\n    balance: Float = 0.0\n\n    on deposit(amount: Float):\n        balance += amount\n        reply "Deposited!"`, output: "Deposited! (saldo aggiornato)"},
-      {name: "Parallel", code: `async fn process_batch(items: [Data]) -> [Result]:\n    results = parallel:\n        for item in items:\n            await heavy_computation(item)`, output: "Elaborati 8 item in parallelo"},
-      {name: "AI Feature", code: `# AI: crea una classe User\nuser_model = ai "classe User con validazione email e password hash"`, output: "Classe User generata automaticamente dall'AI!"}
+      {name: "Actor Bank", code: `actor BankAccount:\n    balance: Float = 0.0\n\n    on deposit(amount: Float):\n        balance += amount`, output: "Deposited! (saldo aggiornato)"},
+      {name: "Parallel", code: `parallel:\n    print("Task 1")\n    print("Task 2")`, output: "Task 1\nTask 2"},
+      {name: "AI Feature", code: `# AI: crea una classe User\nuser_model = ai "classe User con validazione email e password hash"`, output: "Classe User generata automaticamente!"}
     ];
 
     let currentIndex = 0;
@@ -74,8 +80,6 @@ const title = "Velora Playground • Prova subito il linguaggio";
     function loadExample(index) {
       currentIndex = index;
       document.getElementById('code').value = examples[index].code;
-      
-      // evidenzia il pulsante attivo
       document.querySelectorAll('#examples button').forEach((btn, i) => {
         btn.classList.toggle('active', i === index);
       });
@@ -88,7 +92,6 @@ const title = "Velora Playground • Prova subito il linguaggio";
       output.style.color = '#ffffff';
     }
 
-    // Crea i pulsanti dinamicamente
     function createButtons() {
       const container = document.getElementById('examples');
       examples.forEach((ex, i) => {
@@ -98,12 +101,10 @@ const title = "Velora Playground • Prova subito il linguaggio";
         btn.onclick = () => loadExample(i);
         container.appendChild(btn);
       });
-      loadExample(0); // primo esempio attivo
+      loadExample(0);
     }
 
-    // Run button
     document.getElementById('run-btn').addEventListener('click', runCode);
-
     window.onload = createButtons;
   </script>
 </body>
