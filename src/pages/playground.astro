@@ -11,26 +11,27 @@ const title = "Velora Playground • Prova subito il linguaggio";
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { background: radial-gradient(circle at center, #0A0A1F 0%, #000000 100%); }
-    .editor { background: #05050F; border: 3px solid #00F5FF; box-shadow: 0 0 40px #00F5FF; }
   </style>
 </head>
 <body class="text-white font-sans">
   <div class="min-h-screen p-8">
     <div class="max-w-6xl mx-auto">
-      <!-- Header -->
+      <!-- Header bianco -->
       <div class="flex justify-between items-center mb-8">
-        <a href="/" class="flex items-center gap-3 text-3xl font-bold">
+        <a href="/" class="flex items-center gap-3 text-3xl font-bold" style="color: #ffffff; text-shadow: 0 0 40px #00F5FF;">
           <img src="/logo.png" class="w-12" alt="Velora">
           VELORA
         </a>
-        <h1 class="text-4xl font-bold">Playground</h1>
+        <h1 style="color: #ffffff; text-shadow: 0 0 40px #00F5FF;" class="text-4xl font-bold">Playground</h1>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <!-- Editor -->
         <div>
-          <h2 class="text-xl mb-3 text-cyan-300">Scrivi codice Velora</h2>
-          <textarea id="code" class="editor w-full h-96 p-6 text-cyan-300 font-mono text-lg resize-none rounded-3xl" spellcheck="false">main:
+          <h2 style="color: #ffffff;" class="text-xl mb-3">Scrivi codice Velora</h2>
+          <textarea id="code" class="editor w-full h-96 p-6 font-mono text-lg resize-none rounded-3xl" 
+                    style="background: #05050F; border: 3px solid #00F5FF; box-shadow: 0 0 40px #00F5FF; color: #67E8F9 !important;" 
+                    spellcheck="false">main:
     print("Ciao mondo! Velora è viva 🚀")
 
 fn fibonacci(n: Int) -> Int:
@@ -40,31 +41,31 @@ fn fibonacci(n: Int) -> Int:
         _: fibonacci(n-1) + fibonacci(n-2)</textarea>
         </div>
 
-        <!-- Output -->
+        <!-- Output bianco -->
         <div>
           <div class="flex justify-between mb-3">
-            <h2 class="text-xl text-cyan-300">Output</h2>
+            <h2 style="color: #ffffff;" class="text-xl">Output</h2>
             <button onclick="runCode()" 
                     class="px-8 py-3 bg-gradient-to-r from-purple-600 to-cyan-500 rounded-2xl font-bold text-xl hover:scale-105 transition">
               ▶️ Run (Simulato)
             </button>
           </div>
-          <div id="output" class="editor w-full h-96 p-6 text-white font-mono text-lg rounded-3xl overflow-auto">
+          <div id="output" class="editor w-full h-96 p-6 font-mono text-lg rounded-3xl overflow-auto" 
+               style="background: #05050F; border: 3px solid #00F5FF; box-shadow: 0 0 40px #00F5FF; color: #ffffff !important;">
             Clicca Run per vedere il risultato...
           </div>
         </div>
       </div>
 
-      <p class="mt-12 text-center text-cyan-400">Questo è un mock interattivo. Il vero compilatore arriverà in v1.1!</p>
+      <p style="color: #ffffff; text-shadow: 0 0 20px #67E8F9;" class="mt-12 text-center">Questo è un mock interattivo. Il vero compilatore arriverà in v1.1!</p>
     </div>
   </div>
 
   <script>
     function runCode() {
-      const code = document.getElementById('code').value;
       const output = document.getElementById('output');
-      output.innerHTML = `<span class="text-green-400">✓ Compilato in 0.03s</span><br><br>Output:<br>Ciao mondo! Velora è viva 🚀<br>Fibonacci(10) = 55<br><br>🎉 Tutto perfetto!`;
-      output.style.color = '#67E8F9';
+      output.innerHTML = `<span style="color:#67E8F9;">✓ Compilato in 0.03s</span><br><br>Output:<br>Ciao mondo! Velora è viva 🚀<br>Fibonacci(10) = 55<br><br>🎉 Tutto perfetto!`;
+      output.style.color = '#ffffff';
     }
   </script>
 </body>
