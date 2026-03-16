@@ -14,25 +14,22 @@ const title = "Velora Docs • v2.0";
   </style>
 </head>
 <body class="text-white font-sans">
-  <!-- NAVIGAZIONE -->
-  <nav class="flex justify-center gap-8 py-6 text-lg font-medium">
+  <!-- NAVIGAZIONE SUPERIORE -->
+  <nav class="flex justify-center gap-8 py-6 text-lg font-medium border-b border-cyan-500/30">
     <a href="/" class="hover:text-cyan-300 transition">Home</a>
     <a href="/docs" class="hover:text-cyan-300 transition">Docs</a>
     <a href="/playground" class="hover:text-cyan-300 transition">Playground</a>
   </nav>
 
   <div class="max-w-4xl mx-auto p-8">
-    <!-- Header -->
+    <!-- HEADER CON LOGO A METÀ (70px) -->
     <div class="flex items-center gap-4 mb-12">
-      <img src="/logo.png" class="w-16" alt="Velora">
+      <img src="/logo.png" class="w-[70px]" alt="Velora">
       <div>
         <h1 style="color: #ffffff !important; text-shadow: 0 0 80px #00F5FF, 0 0 160px #A020F0, 0 0 300px #ffffff !important;" class="text-5xl font-bold">Velora Docs</h1>
         <p style="color: #67E8F9 !important;" class="text-xl">v2.0 • AI-Native Programming Language</p>
       </div>
     </div>
-
-    <!-- Il resto del contenuto docs rimane uguale (sintassi, esempi, ecc.) -->
-    <!-- ... (puoi copiare il resto dalla versione precedente se vuoi, ma per brevità lo lascio qui completo) -->
 
     <h2 style="color: #ffffff !important; text-shadow: 0 0 60px #00F5FF, 0 0 120px #A020F0, 0 0 200px #ffffff !important;" class="text-3xl font-bold mb-8">Installazione</h2>
     <div class="bg-[#05050F] p-6 rounded-3xl mb-12">
@@ -40,7 +37,59 @@ const title = "Velora Docs • v2.0";
 python3 velora.py run test.vel</code></pre>
     </div>
 
-    <!-- ... resto degli esempi ... -->
+    <h2 style="color: #ffffff !important; text-shadow: 0 0 60px #00F5FF, 0 0 120px #A020F0, 0 0 200px #ffffff !important;" class="text-3xl font-bold mb-8">Sintassi Base</h2>
+    <ul class="space-y-6 text-lg" style="color: #ffffff !important;">
+      <li><strong>main:</strong> punto di ingresso</li>
+      <li><strong>print()</strong> – output</li>
+      <li><strong>let x = ...</strong> – variabile</li>
+      <li><strong>fn nome(...)</strong> – funzioni</li>
+      <li><strong>match</strong> – pattern matching</li>
+      <li><strong>actor</strong> – concurrency sicura</li>
+      <li><strong>parallel:</strong> – parallelismo reale</li>
+      <li><strong># AI:</strong> – generazione automatica</li>
+    </ul>
+
+    <h2 style="color: #ffffff !important; text-shadow: 0 0 60px #00F5FF, 0 0 120px #A020F0, 0 0 200px #ffffff !important;" class="text-3xl font-bold mt-16 mb-8">Esempi Completi</h2>
+
+    <div class="space-y-12">
+      <div>
+        <h3 style="color: #ffffff !important;" class="text-2xl font-bold text-cyan-300 mb-3">1. Hello World</h3>
+        <pre class="bg-[#05050F] p-6 rounded-3xl"><code style="color: #67E8F9 !important;">main:
+    print("Ciao mondo! Velora è viva 🚀")</code></pre>
+      </div>
+
+      <div>
+        <h3 style="color: #ffffff !important;" class="text-2xl font-bold text-cyan-300 mb-3">2. Fibonacci</h3>
+        <pre class="bg-[#05050F] p-6 rounded-3xl"><code style="color: #67E8F9 !important;">fn fibonacci(n: Int) -> Int:
+    match n:
+        0: 0
+        1: 1
+        _: fibonacci(n-1) + fibonacci(n-2)
+
+print(fibonacci(10))</code></pre>
+      </div>
+
+      <div>
+        <h3 style="color: #ffffff !important;" class="text-2xl font-bold text-cyan-300 mb-3">3. Actor</h3>
+        <pre class="bg-[#05050F] p-6 rounded-3xl"><code style="color: #67E8F9 !important;">actor BankAccount:
+    balance: Float = 0.0
+
+BankAccount << deposit(100)</code></pre>
+      </div>
+
+      <div>
+        <h3 style="color: #ffffff !important;" class="text-2xl font-bold text-cyan-300 mb-3">4. Parallelismo</h3>
+        <pre class="bg-[#05050F] p-6 rounded-3xl"><code style="color: #67E8F9 !important;">parallel:
+    print("Task 1")
+    print("Task 2")</code></pre>
+      </div>
+
+      <div>
+        <h3 style="color: #ffffff !important;" class="text-2xl font-bold text-cyan-300 mb-3">5. AI Feature</h3>
+        <pre class="bg-[#05050F] p-6 rounded-3xl"><code style="color: #67E8F9 !important;"># AI: crea una classe User
+user_model = ai "classe User con validazione email e password hash"</code></pre>
+      </div>
+    </div>
 
     <p style="color: #ffffff !important; text-shadow: 0 0 40px #67E8F9;" class="mt-16 text-center text-lg">
       Built with ❤️ in Rome 
