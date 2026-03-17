@@ -47,7 +47,7 @@ const title = "Velora Playground • Prova subito il linguaggio";
           </div>
           <div id="output" class="w-full h-96 p-6 font-mono text-lg rounded-3xl overflow-auto" 
                style="background: #05050F; border: 3px solid #00F5FF; box-shadow: 0 0 40px #00F5FF; color: #ffffff !important;">
-            Clicca Run per eseguire con WebAssembly!
+            Clicca Run...
           </div>
         </div>
       </div>
@@ -63,13 +63,12 @@ const title = "Velora Playground • Prova subito il linguaggio";
 
       try {
         const module = await import('/velora.js');
-        await module.default();           // inizializza il glue
-        runVelora = module.run_velora;    // funzione esportata
-        output.textContent = "✅ WASM caricato correttamente!";
+        await module.default();
+        runVelora = module.run_velora;
+        output.textContent = "✅ WASM caricato!";
         return true;
       } catch (e) {
-        output.textContent = `❌ Errore caricamento WASM:\n${e.message}`;
-        console.error(e);
+        output.textContent = `❌ Errore WASM:\n${e.message}`;
         return false;
       }
     }
@@ -87,7 +86,7 @@ const title = "Velora Playground • Prova subito il linguaggio";
         const result = runVelora(code);
         output.textContent = `✓ Eseguito con WASM!\n\n${result}`;
       } catch (err) {
-        output.textContent = `❌ Errore esecuzione:\n${err.message}`;
+        output.textContent = `❌ Errore:\n${err.message}`;
       }
     }
 
