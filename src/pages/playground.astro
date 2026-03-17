@@ -55,24 +55,40 @@ const title = "Velora Playground • Prova subito il linguaggio";
   </div>
 
   <script>
-    let veloraModule;
+    let veloraModule = null;
 
     async function initWasm() {
-      veloraModule = await import('/velora.js');
+      if (veloraModule) return veloraModule;
+      try {
+        veloraModule = await import('/velora.js');
+        return veloraModule;
+      } catch (err) {
+        console.error("Errore caricamento WASM:", err);
+        return null;
+      }
     }
 
     async function runCode() {
       const code = document.getElementById('code').value;
       const output = document.getElementById('output');
+      output.textContent = "Esecuzione in corso...";
 
-      if (!veloraModule) await initWasm();
+      const module = await initWasm();
+      if (!module) {
+        output.textContent = "❌ Errore: impossibile caricare il modulo WASM";
+        return;
+      }
 
-      const result = veloraModule.run_velora(code);
-      output.innerHTML = `<span style="color:#67E8F9;">✓ Eseguito con WASM in 0.03s</span><br><br>${result}`;
+      try {
+        const result = module.run_velora(code);
+        output.textContent = `✓ Eseguito con WASM in 0.03s\n\n${result}`;
+      } catch (err) {
+        output.textContent = `❌ Errore durante l'esecuzione:\n${err.message}`;
+      }
     }
 
     document.getElementById('run-btn').addEventListener('click', runCode);
-    initWasm();
+    initWasm(); // inizializza una sola volta
   </script>
 </body>
 </html>
