@@ -62,15 +62,15 @@ const title = "Velora Playground • Prova subito il linguaggio";
 
       try {
         const response = await fetch('/velora_bg.wasm');
-        if (!response.ok) throw new Error(`HTTP ${response.status} - file non trovato`);
-        
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
         const buffer = await response.arrayBuffer();
-        const { instance } = await WebAssembly.instantiate(buffer);
+        const { instance } = await WebAssembly.instantiate(buffer, {});  // ← OGGETTO VUOTO richiesto
         wasmInstance = instance;
-        output.textContent = "✅ WASM caricato correttamente!";
+        output.textContent = "✅ WASM caricato!";
         return instance;
       } catch (e) {
-        output.textContent = `❌ Errore caricamento WASM:\n${e.message}\n\nControlla che velora_bg.wasm sia in /public/`;
+        output.textContent = `❌ Errore caricamento WASM:\n${e.message}`;
         console.error(e);
         return null;
       }
@@ -86,7 +86,7 @@ const title = "Velora Playground • Prova subito il linguaggio";
       try {
         const result = instance.exports.run_velora 
           ? instance.exports.run_velora(code) 
-          : "Funzione run_velora non trovata nel WASM";
+          : "Funzione run_velora non trovata";
         output.textContent = `✓ Eseguito con WASM!\n\n${result}`;
       } catch (err) {
         output.textContent = `❌ Errore esecuzione:\n${err.message}`;
