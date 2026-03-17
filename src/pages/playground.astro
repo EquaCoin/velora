@@ -11,7 +11,6 @@ const title = "Velora Playground • Prova subito il linguaggio";
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="text-white font-sans">
-  <!-- NAVIGAZIONE -->
   <nav class="flex justify-center gap-8 py-6 text-lg font-medium border-b border-cyan-500/30">
     <a href="/" class="hover:text-cyan-300 transition">Home</a>
     <a href="/docs" class="hover:text-cyan-300 transition">Docs</a>
@@ -47,7 +46,7 @@ const title = "Velora Playground • Prova subito il linguaggio";
           </div>
           <div id="output" class="w-full h-96 p-6 font-mono text-lg rounded-3xl overflow-auto" 
                style="background: #05050F; border: 3px solid #00F5FF; box-shadow: 0 0 40px #00F5FF; color: #ffffff !important;">
-            Clicca Run per eseguire con WebAssembly!
+            Clicca Run...
           </div>
         </div>
       </div>
@@ -58,34 +57,36 @@ const title = "Velora Playground • Prova subito il linguaggio";
     let wasmInstance = null;
 
     async function initWasm() {
-      if (wasmInstance) return wasmInstance;
+      const output = document.getElementById('output');
+      output.textContent = "Caricamento WASM...";
+
       try {
         const response = await fetch('/velora_bg.wasm');
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        if (!response.ok) throw new Error(`HTTP ${response.status} - file non trovato`);
+        
         const buffer = await response.arrayBuffer();
         const { instance } = await WebAssembly.instantiate(buffer);
         wasmInstance = instance;
+        output.textContent = "✅ WASM caricato correttamente!";
         return instance;
       } catch (e) {
-        console.error("Errore WASM:", e);
+        output.textContent = `❌ Errore caricamento WASM:\n${e.message}\n\nControlla che velora_bg.wasm sia in /public/`;
+        console.error(e);
         return null;
       }
     }
 
     async function runCode() {
+      const code = document.getElementById('code').value;
       const output = document.getElementById('output');
-      output.textContent = "Caricamento WASM in corso...";
 
       const instance = await initWasm();
-      if (!instance) {
-        output.textContent = "❌ Impossibile caricare velora_bg.wasm.\nControlla che il file sia in /public/ e redeploya.";
-        return;
-      }
+      if (!instance) return;
 
       try {
-        const result = instance.exports.run_velora ? 
-          instance.exports.run_velora("test") : 
-          "Funzione run_velora non trovata nel WASM";
+        const result = instance.exports.run_velora 
+          ? instance.exports.run_velora(code) 
+          : "Funzione run_velora non trovata nel WASM";
         output.textContent = `✓ Eseguito con WASM!\n\n${result}`;
       } catch (err) {
         output.textContent = `❌ Errore esecuzione:\n${err.message}`;
