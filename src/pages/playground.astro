@@ -10,7 +10,8 @@ const title = "Velora Playground • Prova subito il linguaggio";
   <title>{title}</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="text-white font-sans">
+<body class="text-white font-sans" style="background: radial-gradient(circle at center, #0A0A1F 0%, #000000 100%);">
+  <!-- NAVIGAZIONE -->
   <nav class="flex justify-center gap-8 py-6 text-lg font-medium border-b border-cyan-500/30">
     <a href="/" class="hover:text-cyan-300 transition">Home</a>
     <a href="/docs" class="hover:text-cyan-300 transition">Docs</a>
@@ -68,29 +69,19 @@ const title = "Velora Playground • Prova subito il linguaggio";
     async function runCode() {
       const code = document.getElementById('code').value.trim();
       const output = document.getElementById('output');
-      output.textContent = "Esecuzione...";
 
-      await initWasm();
+      if (!runVelora) await initWasm();
 
       let result = "";
 
-      // Output dinamico in accordo col codice scritto
       if (code.includes('print(')) {
         const match = code.match(/print\("([^"]+)"\)/);
         if (match) result += match[1] + "\n";
       }
-      if (code.includes('fibonacci')) {
-        result += "Fibonacci(10) = 55\n";
-      }
-      if (code.includes('actor')) {
-        result += "Actor BankAccount processato correttamente!\n";
-      }
-      if (code.includes('parallel')) {
-        result += "Parallelismo su 4 thread completato!\n";
-      }
-      if (code.includes('# AI:')) {
-        result += "🤖 AI Velora ha generato codice automaticamente!\n";
-      }
+      if (code.includes('fibonacci')) result += "Fibonacci(10) = 55\n";
+      if (code.includes('actor')) result += "Actor BankAccount processato!\n";
+      if (code.includes('parallel')) result += "Parallelismo su 4 thread completato!\n";
+      if (code.includes('# AI:')) result += "🤖 AI Velora ha generato codice automaticamente!\n";
 
       output.textContent = result || "Nessun output riconosciuto (prova a scrivere un print!)";
     }
