@@ -9,7 +9,6 @@ const title = "Velora Playground • Prova subito il linguaggio";
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script type="module" src="/velora.js"></script>
 </head>
 <body class="text-white font-sans">
   <!-- NAVIGAZIONE -->
@@ -21,7 +20,6 @@ const title = "Velora Playground • Prova subito il linguaggio";
 
   <div class="min-h-screen p-8">
     <div class="max-w-6xl mx-auto">
-      <!-- Header -->
       <div class="flex justify-between items-center mb-8">
         <a href="/" class="flex items-center gap-3 text-3xl font-bold" style="color: #ffffff; text-shadow: 0 0 40px #00F5FF;">
           <img src="/logo.png" class="w-[70px]" alt="Velora">
@@ -31,7 +29,6 @@ const title = "Velora Playground • Prova subito il linguaggio";
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <!-- Editor -->
         <div>
           <h2 style="color: #ffffff;" class="text-xl mb-3">Scrivi codice Velora</h2>
           <textarea id="code" class="w-full h-96 p-6 font-mono text-lg resize-none rounded-3xl" 
@@ -40,7 +37,6 @@ const title = "Velora Playground • Prova subito il linguaggio";
     print("Ciao mondo! Velora è viva 🚀")</textarea>
         </div>
 
-        <!-- Output -->
         <div>
           <div class="flex justify-between mb-3">
             <h2 style="color: #ffffff;" class="text-xl">Output</h2>
@@ -55,11 +51,6 @@ const title = "Velora Playground • Prova subito il linguaggio";
           </div>
         </div>
       </div>
-
-      <!-- TESTO AGGIORNATO -->
-      <p style="color: #ffffff !important; text-shadow: 0 0 30px #67E8F9;" class="mt-12 text-center text-lg">
-        Velora v9 • Compilatore WebAssembly reale in esecuzione
-      </p>
     </div>
   </div>
 
