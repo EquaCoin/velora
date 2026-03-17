@@ -55,13 +55,16 @@ const title = "Velora Playground • Prova subito il linguaggio";
   </div>
 
   <script>
-    let veloraModule = null;
+    let wasmInstance = null;
 
     async function initWasm() {
-      if (veloraModule) return veloraModule;
+      if (wasmInstance) return wasmInstance;
       try {
-        veloraModule = await import('/velora.js');
-        return veloraModule;
+        const response = await fetch('/velora_bg.wasm');
+        const buffer = await response.arrayBuffer();
+        const { instance } = await WebAssembly.instantiate(buffer);
+        wasmInstance = instance;
+        return instance;
       } catch (e) {
         console.error("Errore WASM:", e);
         return null;
@@ -73,14 +76,15 @@ const title = "Velora Playground • Prova subito il linguaggio";
       const output = document.getElementById('output');
       output.textContent = "Esecuzione in corso...";
 
-      const module = await initWasm();
-      if (!module) {
+      const instance = await initWasm();
+      if (!instance) {
         output.textContent = "❌ Errore caricamento WASM";
         return;
       }
 
       try {
-        const result = module.run_velora(code);
+        // Chiama la funzione esportata dal WASM (run_velora)
+        const result = instance.exports.run_velora(code);
         output.textContent = `✓ Eseguito con WASM in 0.03s\n\n${result}`;
       } catch (err) {
         output.textContent = `❌ Errore esecuzione:\n${err.message}`;
