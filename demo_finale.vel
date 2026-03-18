@@ -1,0 +1,41 @@
+# Demo Velora v3 - Cosa funziona OGGI
+
+fn calcola_area(raggio) -> Int {
+    let pi = 3
+    return pi * raggio * raggio
+}
+
+fn saluta(nome) -> String {
+    return "Ciao " + nome + "!"
+}
+
+main:
+    print("=== Velora v3 Demo ===")
+    
+    # Variabili e aritmetica
+    let x = 10
+    let y = 20
+    print(x + y)
+    
+    # Funzioni
+    print(calcola_area(5))
+    print(saluta("Mondo"))
+    
+    # Control flow
+    if x > 5 {
+        print("x e grande")
+    } else {
+        print("x e piccolo")
+    }
+    
+    # While loop
+    let i = 3
+    while i > 0 {
+        print(i)
+        let i = i - 1
+    }
+    
+    # Funzioni built-in
+    print(fibonacci(10))
+    
+    print("=== Fine Demo ===")

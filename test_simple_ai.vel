@@ -1,0 +1,4 @@
+main:
+    print("Inizio")
+    # AI: crea una funzione molto semplice che raddoppia un numero
+    print("Fine")

@@ -1,0 +1,18 @@
+main:
+    print("=== Test GROK + Template ===")
+    
+    # Template predefiniti
+    # AI: somma da 1 a 20
+    # AI: calcola fattoriale di 7
+    
+    # Nuovi template
+    # AI: cubo di 5
+    # AI: verifica se 10 è pari
+    
+    # Questo potrebbe usare GROK se non c'è template
+    # AI: crea funzione per il massimo di due numeri
+    
+    print(sum_to_n(20))
+    print(factorial(7))
+    print(cube(5))
+    print(is_even(10))

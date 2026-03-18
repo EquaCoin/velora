@@ -1,0 +1,9 @@
+main:
+    print("=== Velora AI-First Showcase ===")
+    
+    # AI: somma da 1 a 100
+    # AI: calcola fattoriale di 5
+    # AI: verifica se 13 è primo
+    # AI: raddoppia il numero 21
+    
+    print("=== Fine ===")

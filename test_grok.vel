@@ -1,0 +1,5 @@
+main:
+    print("=== Test GROK Integration ===")
+    # AI: crea funzione per calcolare il cubo di un numero
+    # AI: crea funzione per verificare se un numero è pari
+    print("=== Fine ===")

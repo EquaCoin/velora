@@ -1,0 +1,8 @@
+main:
+    print("=== Velora Auto-Evoluzione Demo ===")
+    
+    # AI: crea una funzione per calcolare la somma dei numeri da 1 a N
+    
+    # AI: crea una funzione per verificare se un numero è primo
+    
+    print("Fatto!")

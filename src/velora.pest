@@ -1,0 +1,114 @@
+// Grammatica Velora v3
+
+WHITESPACE = _{ " " | "\t" | "\n" | "\r" | COMMENT }
+COMMENT    = _{ "#" ~ (!"\n" ~ ANY)* }
+
+// Keywords (silenziose per non generare token separati)
+main_kw    = _{ "main" }
+let_kw     = _{ "let" }
+print_kw   = _{ "print" }
+fn_kw      = _{ "fn" }
+return_kw  = _{ "return" }
+if_kw      = _{ "if" }
+else_kw    = _{ "else" }
+while_kw   = _{ "while" }
+
+// Identifiers and literals
+identifier = @{ ASCII_ALPHA ~ (ASCII_ALPHANUMERIC | "_")* }
+number     = @{ ASCII_DIGIT+ }
+float      = @{ ASCII_DIGIT+ ~ "." ~ ASCII_DIGIT+ ~ (("e" | "E") ~ ("+" | "-")? ~ ASCII_DIGIT+)? }
+string     = @{ "\"" ~ (!"\"" ~ ANY)* ~ "\"" }
+bool       = { "true" | "false" }
+
+// Operators (infix)
+plus       = { "+" }
+minus      = { "-" }
+mul        = { "*" }
+div        = { "/" }
+modulo     = { "%" }
+eq         = { "==" }
+neq        = { "!=" }
+lt         = { "<" }
+gt         = { ">" }
+lte        = { "<=" }
+gte        = { ">=" }
+and        = { "&&" }
+or         = { "||" }
+not_op     = { "!" }  // operatore prefix 'not' (nome diverso per distinguerlo da infix)
+assign     = { "=" }
+
+// Operatori prefix (stessi caratteri ma regole diverse per il Pratt parser)
+neg        = { "-" }  // operatore prefix '-' (negazione unaria)
+
+// Expressions (using Pratt parser for precedence)
+// Il Pratt parser necessita di regole separate per operatori prefix e infix
+// anche quando usano gli stessi caratteri
+expr = { (neg | not_op)? ~ primary ~ ((eq | neq | lte | gte | lt | gt | and | or | plus | minus | mul | div | modulo) ~ (neg | not_op)? ~ primary)* }
+
+primary = { 
+    map_lit
+  | array_lit
+  | index_expr
+  | number_lit
+  | string_lit
+  | bool_lit
+  | function_call
+  | identifier
+  | "(" ~ expr ~ ")"
+}
+
+array_lit = { "[" ~ (expr ~ ("," ~ expr)*)? ~ "]" }
+map_lit = { "{" ~ (map_entry ~ ("," ~ map_entry)*)? ~ "}" }
+map_entry = { (identifier | string_lit) ~ ":" ~ expr }
+index_expr = { identifier ~ "[" ~ expr ~ "]" }
+
+number_lit  = { float | number }
+string_lit  = { string }
+bool_lit    = { bool }
+
+// Function call (anche con namespace: mod.func())
+func_name     = { identifier ~ ("." ~ identifier)* }
+function_call = { func_name ~ "(" ~ call_args? ~ ")" }
+call_args     = { expr ~ ("," ~ expr)* }
+
+// Statements
+statement = { 
+    if_stmt
+  | while_stmt
+  | block_stmt
+  | print_stmt
+  | let_stmt
+  | assignment_stmt
+  | return_stmt
+  | expr_stmt
+}
+
+if_stmt = { if_kw ~ expr ~ block ~ (else_kw ~ block)? }
+while_stmt = { while_kw ~ expr ~ block }
+
+block_stmt = { "{" ~ statement* ~ "}" }
+print_stmt      = { print_kw ~ "(" ~ expr ~ ")" }
+let_stmt        = { let_kw ~ identifier ~ "=" ~ expr }
+assignment_stmt = { identifier ~ "=" ~ expr }
+return_stmt     = { return_kw ~ expr? }
+expr_stmt       = { expr }
+
+// Import statements
+import_stmt     = { "import" ~ string ~ ("as" ~ identifier)? }
+
+// Blocks and functions
+block = { block_stmt | statement }
+
+function_def = { fn_kw ~ identifier ~ "(" ~ params? ~ ")" ~ "->" ~ type_name ~ block }
+params       = { param ~ ("," ~ param)* }
+param        = { identifier ~ (":" ~ type_name)? }
+type_name    = { "Int" | "Float" | "String" | "Bool" | "Void" | "Array" | "Map" | "Option" | "Result" }
+
+// Main block (special syntax for entry point)
+main_block = { main_kw ~ ":" ~ statement* }
+
+// Program
+program = { SOI ~ import_stmt* ~ (function_def | test_block | main_block)* ~ EOI }
+
+// Test block
+test_block = { "test" ~ string ~ "{" ~ statement* ~ "}" }

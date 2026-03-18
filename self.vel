@@ -1,0 +1,8 @@
+# AI: self aggiungi supporto per quantum computing
+
+fn main() -> String {
+    return "Test Self-Hosting"
+}
+
+main:
+    print(main())

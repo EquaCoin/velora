@@ -1,0 +1,32 @@
+# Demo Velora AI-First Edition
+# Questo file dimostra il sistema di auto-evoluzione
+
+main:
+    print("=== Velora AI-First Demo ===")
+    print("")
+    
+    # Template predefiniti (funzionano sempre)
+    print("1. Template predefiniti:")
+    # AI: somma numeri da 1 a 10
+    
+    print("")
+    print("2. Cache template:")
+    # Se hai già generato un template, viene usato dalla cache
+    # AI: calcola fattoriale di 5
+    
+    print("")
+    print("3. GROK AI (se configurato):")
+    # Se GROK_API_KEY è impostata, genera codice nuovo
+    # AI: crea funzione per calcolare il cubo di un numero
+    # AI: verifica se un numero è pari
+    
+    print("")
+    print("=== Risultati ===")
+    print(sum_to_n(10))
+    print(factorial(5))
+    # Se GROK è configurato, vedrai anche:
+    # print(cube(3))
+    # print(is_even(4))
+    
+    print("")
+    print("=== Fine Demo ===")
