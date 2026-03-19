@@ -1,0 +1,10 @@
+{
+  "name": "velora-site",
+  "version": "1.0.0",
+  "description": "Velora Programming Language Website",
+  "scripts": {
+    "build": "cp -r www dist",
+    "dev": "python3 -m http.server 8080 -d www"
+  },
+  "license": "MIT"
+}
