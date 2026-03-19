@@ -25,3 +25,5 @@ test_output/
 
 # Package manager local
 velora-packages/*.tar.gz
+velora-packages/
+.gitmodules
