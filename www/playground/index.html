@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Velora Playground • Prova subito il linguaggio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: radial-gradient(circle at center, #0A0A1F 0%, #000000 100%);
+      color: white;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .nav-link {
+      transition: color 0.3s;
+    }
+    .nav-link:hover {
+      color: #67E8F9;
+    }
+    .editor {
+      background: #05050F;
+      border: 3px solid #00F5FF;
+      box-shadow: 0 0 40px #00F5FF;
+      color: #67E8F9;
+    }
+    .output {
+      background: #05050F;
+      border: 3px solid #00F5FF;
+      box-shadow: 0 0 40px #00F5FF;
+      color: #ffffff;
+    }
+    .run-btn {
+      background: linear-gradient(135deg, #9333ea 0%, #06b6d4 100%);
+      transition: transform 0.2s;
+    }
+    .run-btn:hover {
+      transform: scale(1.05);
+    }
+    .logo-text {
+      color: #ffffff;
+      text-shadow: 0 0 40px #00F5FF;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVIGAZIONE -->
+  <nav class="flex justify-center gap-8 py-6 text-lg font-medium border-b border-cyan-500/30">
+    <a href="/" class="nav-link">Home</a>
+    <a href="/docs" class="nav-link">Docs</a>
+    <a href="/playground" class="nav-link">Playground</a>
+  </nav>
+
+  <div class="min-h-screen p-8">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex justify-between items-center mb-8">
+        <a href="/" class="flex items-center gap-3 text-3xl font-bold logo-text">
+          <span class="text-4xl">🚀</span> VELORA
+        </a>
+        <h1 class="text-4xl font-bold logo-text">Playground</h1>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div>
+          <h2 class="text-xl mb-3 text-white">Scrivi codice Velora</h2>
+          <textarea id="code" class="w-full h-96 p-6 font-mono text-lg resize-none rounded-3xl editor" 
+                    spellcheck="false">main:
+    print("Ciao mondo! Velora è viva 🚀")
+    
+# Prova anche:
+# factorial(5)
+# fibonacci(10)
+# square(7.0)</textarea>
+        </div>
+
+        <div>
+          <div class="flex justify-between mb-3">
+            <h2 class="text-xl text-white">Output</h2>
+            <button id="run-btn" class="run-btn px-8 py-3 rounded-2xl font-bold text-xl text-white">
+              ▶️ Run (WASM REALE)
+            </button>
+          </div>
+          <div id="output" class="w-full h-96 p-6 font-mono text-lg rounded-3xl overflow-auto output">
+            Clicca Run per eseguire il codice...
+          </div>
+        </div>
+      </div>
+
+      <!-- Esempi -->
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <button onclick="loadExample('hello')" class="p-4 rounded-xl bg-white/5 border border-cyan-500/30 hover:bg-white/10 transition">
+          👋 Hello World
+        </button>
+        <button onclick="loadExample('math')" class="p-4 rounded-xl bg-white/5 border border-cyan-500/30 hover:bg-white/10 transition">
+          🔢 Math Lib
+        </button>
+        <button onclick="loadExample('ai')" class="p-4 rounded-xl bg-white/5 border border-cyan-500/30 hover:bg-white/10 transition">
+          🤖 AI Self-Hosting
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import init, { run_velora } from '../velora.js';
+    
+    let wasmInitialized = false;
+    
+    async function initWasm() {
+      if (!wasmInitialized) {
+        await init();
+        wasmInitialized = true;
+      }
+    }
+
+    async function runCode() {
+      const code = document.getElementById('code').value;
+      const output = document.getElementById('output');
+      const btn = document.getElementById('run-btn');
+      
+      btn.textContent = '⏳ Running...';
+      btn.disabled = true;
+      
+      try {
+        await initWasm();
+        const result = run_velora(code);
+        output.textContent = result || '(no output)';
+      } catch (e) {
+        output.textContent = 'Error: ' + e.message;
+      }
+      
+      btn.textContent = '▶️ Run (WASM REALE)';
+      btn.disabled = false;
+    }
+
+    window.loadExample = function(type) {
+      const examples = {
+        hello: `main:
+    print("Hello, World!")
+    print("Velora v11 Self-Hosting 🚀")`,
+        math: `main:
+    print("Square of 5:")
+    print(square(5.0))
+    print("Factorial of 5:")
+    print(factorial(5))`,
+        ai: `# AI: self aggiungi supporto per quantum computing
+
+main:
+    print(auto_evolved_feature())`
+      };
+      document.getElementById('code').value = examples[type] || examples.hello;
+    };
+
+    document.getElementById('run-btn').addEventListener('click', runCode);
+    
+    // Init WASM on load
+    initWasm().catch(console.error);
+  </script>
+</body>
+</html>
