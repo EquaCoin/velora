@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Velora</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #eaeaea;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        header { text-align: center; padding: 3rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        h1 { font-size: 3rem; background: linear-gradient(90deg, #e94560, #ff6b6b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .back { display: inline-block; margin-top: 1rem; color: #e94560; text-decoration: none; }
+        .back:hover { text-decoration: underline; }
+        .section { margin: 3rem 0; }
+        h2 { color: #e94560; margin: 2rem 0 1rem; font-size: 1.8rem; }
+        h3 { color: #ff6b6b; margin: 1.5rem 0 0.5rem; font-size: 1.3rem; }
+        pre {
+            background: rgba(0,0,0,0.4);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border-left: 4px solid #e94560;
+        }
+        code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+        }
+        .inline-code {
+            background: rgba(233,69,96,0.2);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            color: #ff6b6b;
+        }
+        ul, ol { margin: 1rem 0 1rem 2rem; }
+        li { margin: 0.5rem 0; }
+        .feature-box {
+            background: rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .feature-box h3 { margin-top: 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Velora Documentation</h1>
+            <p>Complete guide to the AI-First programming language</p>
+            <a href="/" class="back">← Back to Home</a>
+        </header>
+
+        <div class="section">
+            <h2>🚀 Quick Start</h2>
+            <h3>Installation</h3>
+            <pre><code># Clone the repository
+git clone https://github.com/EquaCoin/velora.git
+cd velora
+
+# Build with Cargo
+cargo build --release
+
+# Run a file
+./target/release/velora run example.vel</code></pre>
+
+            <h3>Hello World</h3>
+            <pre><code>main:
+    print("Hello, Velora!")</code></pre>
+        </div>
+
+        <div class="section">
+            <h2>🧬 Self-Hosting v11</h2>
+            <p>Velora can generate code for itself using AI directives:</p>
+            <pre><code># AI: self aggiungi supporto per quantum computing
+
+main:
+    print(auto_evolved_feature())</code></pre>
+            <p>This generates and saves code to <code>generated.vel</code> automatically.</p>
+        </div>
+
+        <div class="section">
+            <h2>📦 Package Manager</h2>
+            <h3>Install a package</h3>
+            <pre><code>vel add math-lib</code></pre>
+            
+            <h3>Use in code</h3>
+            <pre><code>import "math-lib.vel"
+
+main:
+    print(square(5.0))
+    print(factorial(10))</code></pre>
+
+            <h3>Create your own package</h3>
+            <ol>
+                <li>Create a repository with <code>lib.vel</code></li>
+                <li>Add <code>velora.toml</code> manifest</li>
+                <li>Create a GitHub release with tarball</li>
+                <li>Submit to <code>velora-packages</code> registry</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>📝 Language Syntax</h2>
+            
+            <h3>Variables</h3>
+            <pre><code>let x = 42           # Integer
+let pi = 3.14159     # Float
+let name = "Velora"  # String
+let active = true    # Boolean</code></pre>
+
+            <h3>Functions</h3>
+            <pre><code>fn add(a: Int, b: Int) -> Int {
+    return a + b
+}
+
+fn greet(name: String) -> String {
+    return "Hello, " + name
+}</code></pre>
+
+            <h3>Control Flow</h3>
+            <pre><code>if x > 10 {
+    print("big")
+} else {
+    print("small")
+}
+
+while x > 0 {
+    print(x)
+    x = x - 1
+}</code></pre>
+
+            <h3>Arrays and Maps</h3>
+            <pre><code>let nums = [1, 2, 3, 4, 5]
+print(nums[0])        # Access
+print(len(nums))      # Length
+
+let user = {name: "Mario", age: 30}
+print(map_get(user, "name"))</code></pre>
+        </div>
+
+        <div class="section">
+            <h2>🧪 Testing</h2>
+            <pre><code>fn sum(a: Int, b: Int) -> Int {
+    return a + b
+}
+
+test "sum works" {
+    assert_eq(sum(2, 3), 5)
+    assert_true(sum(0, 0) == 0)
+}
+
+main:
+    print(sum(10, 20))</code></pre>
+            <p>Run tests with: <code>velora test file.vel</code></p>
+        </div>
+
+        <div class="section">
+            <h2>🔧 Built-in Functions</h2>
+            <div class="feature-box">
+                <h3>Math</h3>
+                <code>square, cube, factorial, fibonacci, is_prime, gcd, lcm, max, min, clamp</code>
+            </div>
+            <div class="feature-box">
+                <h3>Numeric</h3>
+                <code>abs, sqrt, pow, floor, ceil, round</code>
+            </div>
+            <div class="feature-box">
+                <h3>Collections</h3>
+                <code>len, push, contains, split, map_get, map_set, map_keys, map_has</code>
+            </div>
+            <div class="feature-box">
+                <h3>Option/Result</h3>
+                <code>Some, None, Ok, Err, unwrap, unwrap_or, is_ok, is_err</code>
+            </div>
+            <div class="feature-box">
+                <h3>File I/O</h3>
+                <code>read_file, write_file, append_file, file_exists</code>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔌 AI Integration</h2>
+            <p>Set environment variables for AI providers:</p>
+            <pre><code>export GROK_API_KEY="xai-..."
+export OPENAI_API_KEY="sk-..."
+export ANTHROPIC_API_KEY="sk-ant-..."
+export OLLAMA_HOST="http://localhost:11434"</code></pre>
+        </div>
+
+        <div class="section">
+            <h2>📄 License</h2>
+            <p>Velora is released under the MIT License.</p>
+            <p>See <a href="https://github.com/EquaCoin/velora" style="color: #e94560;">GitHub</a> for source code.</p>
+        </div>
+    </div>
+</body>
+</html>
