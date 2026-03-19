@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velora - AI-First Programming Language</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #eaeaea;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        header {
+            text-align: center;
+            padding: 4rem 0;
+        }
+        h1 {
+            font-size: 4rem;
+            background: linear-gradient(90deg, #e94560, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        .tagline {
+            font-size: 1.5rem;
+            color: #a0a0a0;
+            margin-bottom: 2rem;
+        }
+        .version {
+            display: inline-block;
+            background: #e94560;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+        .cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: #e94560;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #ff6b6b;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: #e94560;
+            border: 2px solid #e94560;
+        }
+        .btn-secondary:hover {
+            background: #e94560;
+            color: white;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        .feature {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .feature h3 {
+            color: #e94560;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        .feature p {
+            color: #a0a0a0;
+            line-height: 1.6;
+        }
+        .playground {
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 4rem 0;
+        }
+        .playground h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #e94560;
+        }
+        .editor {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        textarea {
+            width: 100%;
+            height: 300px;
+            background: #1a1a2e;
+            color: #eaeaea;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            resize: vertical;
+        }
+        .output {
+            background: #1a1a2e;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+        .run-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1rem;
+            background: #e94560;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .run-btn:hover {
+            background: #ff6b6b;
+        }
+        .run-btn:disabled {
+            background: #555;
+            cursor: not-allowed;
+        }
+        footer {
+            text-align: center;
+            padding: 4rem 0;
+            color: #666;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 4rem;
+        }
+        footer a {
+            color: #e94560;
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            .editor {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Velora</h1>
+            <div class="version">v11 Self-Hosting</div>
+            <p class="tagline">The AI-First Programming Language That Evolves Itself</p>
+            <div class="cta">
+                <a href="https://github.com/EquaCoin/velora" class="btn btn-primary">GitHub</a>
+                <a href="#playground" class="btn btn-secondary">Try Online</a>
+            </div>
+        </header>
+
+        <section class="features">
+            <div class="feature">
+                <h3>🤖 AI-First Design</h3>
+                <p>Generate code with natural language using GROK, OpenAI, Claude, or local Ollama. Just write <code># AI: create a function...</code></p>
+            </div>
+            <div class="feature">
+                <h3>🧬 Self-Hosting v11</h3>
+                <p>Velora can generate and incorporate code for itself. The language that evolves autonomously.</p>
+            </div>
+            <div class="feature">
+                <h3>📦 Package Manager</h3>
+                <p>Built-in package manager with GitHub registry. Install packages with <code>vel add package-name</code>.</p>
+            </div>
+            <div class="feature">
+                <h3>🧪 Built-in Testing</h3>
+                <p>Write tests directly in your code with <code>test "name" { assert_eq(...) }</code>.</p>
+            </div>
+            <div class="feature">
+                <h3>🔧 LSP Support</h3>
+                <p>Full Language Server Protocol support with autocompletion and go-to-definition.</p>
+            </div>
+            <div class="feature">
+                <h3>⚡ WebAssembly</h3>
+                <p>Run Velora in the browser with WASM support. Try it in the playground below!</p>
+            </div>
+        </section>
+
+        <section id="playground" class="playground">
+            <h2>🚀 Try Velora Online</h2>
+            <div class="editor">
+                <textarea id="code" placeholder="# Write your Velora code here
+fn greet(name) -> String {
+    return \"Hello, \" + name + \"!\"
+}
+
+main:
+    print(greet(\"World\"))
+    print(fibonacci(10))"># Welcome to Velora!
+fn factorial(n) -> Int {
+    if n <= 1 {
+        return 1
+    }
+    return n * factorial(n - 1)
+}
+
+fn square(x) -> Float {
+    return x * x
+}
+
+main:
+    print("Factorial of 5:")
+    print(factorial(5))
+    print("Square of 7:")
+    print(square(7.0))</textarea>
+                <div class="output" id="output">Output will appear here...
+Click 'Run Code' to execute</div>
+            </div>
+            <button class="run-btn" id="runBtn" onclick="runCode()">▶ Run Code</button>
+        </section>
+
+        <footer>
+            <p>Made with ❤️ by <a href="https://github.com/EquaCoin">EquaCoin</a></p>
+            <p>License: MIT | <a href="https://github.com/EquaCoin/velora">GitHub</a> | <a href="https://github.com/EquaCoin/velora-packages">Package Registry</a></p>
+        </footer>
+    </div>
+
+    <script type="module">
+        import init, { run_velora } from './velora.js';
+        
+        let wasmInitialized = false;
+        
+        async function initWasm() {
+            if (!wasmInitialized) {
+                await init();
+                wasmInitialized = true;
+                document.getElementById('runBtn').disabled = false;
+                document.getElementById('output').textContent = 'WASM loaded! Ready to run code.';
+            }
+        }
+        
+        window.runCode = function() {
+            if (!wasmInitialized) {
+                document.getElementById('output').textContent = 'Loading WASM... please wait.';
+                return;
+            }
+            
+            const code = document.getElementById('code').value;
+            const output = document.getElementById('output');
+            
+            try {
+                const result = run_velora(code);
+                output.textContent = result || '(no output)';
+            } catch (e) {
+                output.textContent = 'Error: ' + e.message;
+            }
+        };
+        
+        // Initialize WASM on load
+        initWasm().catch(e => {
+            console.error('WASM init failed:', e);
+            document.getElementById('output').textContent = 'Failed to load WASM. Check console for details.';
+        });
+    </script>
+</body>
+</html>
